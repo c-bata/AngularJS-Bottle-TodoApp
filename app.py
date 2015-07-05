@@ -1,8 +1,12 @@
-from bottle import route, response, run
+from bottle import route, response, run, template
 import json
 
+@route('/')
+def index():
+    return template('tasks')
 
-@route('/tasks')
+
+@route('/api/tasks')
 def tasks():
     response.content_type = 'application/json'
     tasks = [
