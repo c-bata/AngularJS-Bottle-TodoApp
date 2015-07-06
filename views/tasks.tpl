@@ -7,8 +7,13 @@
 <body>
 <h1>ToDoリスト</h1>
 <div ng-controller="TodoController as vm">
+    <form ng-submit="vm.create()">
+        <input type="text" ng-model="vm.newTodo" placeholder="ToDo名を入力">
+        <input type="button" value="新規作成">
+    </form>
+
     <ul ng-repeat="todo in vm.todos">
-        <li>[[todo]]</li>
+        <li>[[todo.title]]</li>
     </ul>
 </div>
 </body>
