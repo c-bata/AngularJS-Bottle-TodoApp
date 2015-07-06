@@ -2,3 +2,8 @@
 
 *.iml
 .idea/
+
+### JavaScript
+
+node_modules/
+build/

@@ -1,11 +1,17 @@
-p.list = function(callback){
-    this.$http({
-        method: 'GET',
-        url   : '/api/tasks',
-        params: {
-            method: 'list'
-        }
-    }).success(function(response){
-        callback.call(this, response.data)
-    });
-};
+var angular = require('angular');
+
+var app = angular.module('ToDo', []);
+
+app.config(function ($interpolateProvider) {
+    $interpolateProvider.startSymbol('[[').endSymbol(']]');
+});
+
+app.controller('TodoController', function(){
+    this.todos = [
+        'タスク1',
+        'タスク2',
+        'タスク3',
+        'タスク4'
+    ]
+});
+

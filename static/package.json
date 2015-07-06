@@ -1,0 +1,19 @@
+{
+  "name": "angularjs-bottle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "c-bata",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.4.1"
+  },
+  "devDependencies": {
+    "browserify": "^10.2.4",
+    "gulp": "^3.9.0",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}
