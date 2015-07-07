@@ -1,9 +1,13 @@
-from bottle import route, response, run, template, static_file
+from bottle import route, response, run, template, static_file, install, post, request
 import json
 import os
 
+import models
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
+
+install(models.plugin)
 
 
 @route('/')
@@ -12,13 +16,9 @@ def index():
 
 
 @route('/api/tasks')
-def tasks():
+def tasks(db):
     response.content_type = 'application/json'
-    tasks = [
-        {'id': '1', 'title': 'タスク表題1', 'memo': 'タスクのメモ1'},
-        {'id': '2', 'title': 'タスク表題2', 'memo': 'タスクのメモ2'},
-        {'id': '3', 'title': 'タスク表題3', 'memo': 'タスクのメモ3'},
-    ]
+    tasks = [task.serialize for task in db.query(models.Task).all()]
     return json.dumps({'tasks': tasks})
 
 
