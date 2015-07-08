@@ -8,13 +8,27 @@ app.config(function ($interpolateProvider) {
 
 app.controller('TodoController', function($http){
     var self = this;
-    self.todos = $http.get('/api/tasks')
-        .success(function(data) {
-            self.todos = data['tasks'];
-        });
+    self.todos = [];
+
+    self.getTodo = function() {
+        self.todos = $http.get('/api/tasks')
+            .success(function(data) {
+                self.todos = data['tasks'];
+            });
+    };
 
     self.create = function() {
-        self.todos.push({'title': self.newTodo});
+        $http.post('/api/tasks', {'title': self.newTodo}).
+            success(function(data, status, headers, config){
+                console.log(data);
+                self.getTodo();
+            }).
+            error(function(data, status, headers, config){
+                console.log(data);
+            });
+
         self.newTodo = '';
-    }
+    };
+
+    self.getTodo();
 });

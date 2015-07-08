@@ -5,7 +5,6 @@ import json
 import os
 
 import models
-import forms
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
@@ -27,17 +26,10 @@ def tasks(db):
 
 @post('/api/tasks')
 def create_task(db):
-    form = forms.TaskForm(request.forms.decode())
-    if form.validate():
-        task = models.Task(
-            title=form.title.data,
-            memo=form.memo.data
-        )
-        db.add(task)
-        return json.dumps(task.serialize)
-    else:
-        response.status_code = 400
-        return json.dumps({'error': 'Validation is failed...'})
+    task = models.Task(title=request.json['title'])
+    db.add(task)
+    db.commit()  # viewが終わるまでcommitされないからidとかを返せない
+    return json.dumps(task.serialize)
 
 
 @route('/static/<filename:path>')

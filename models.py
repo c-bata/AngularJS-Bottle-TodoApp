@@ -28,7 +28,7 @@ class Task(Base):
     title = Column(Unicode(255), nullable=False)
     memo = Column(UnicodeText)
     done = Column(Boolean, nullable=False, default=False)
-    created_at = Column(DateTime, default=datetime.now())
+    created_at = Column(DateTime, default=datetime.now(), nullable=False)
 
     def __repr__(self):
         return "<Task (title='%s')>" % self.title
@@ -40,5 +40,5 @@ class Task(Base):
             'title': self.title,
             'memo': self.memo,
             'done': self.done,
-            'created_at': self.created_at
+            'created_at': self.created_at.strftime('%Y-%m-%d')
         }
