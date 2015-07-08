@@ -1,3 +1,4 @@
 SQLAlchemy==1.0.6
 bottle==0.12.8
 bottle-sqlalchemy==0.4.2
+jsonschema==2.5.1

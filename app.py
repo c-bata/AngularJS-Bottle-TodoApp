@@ -3,8 +3,10 @@ from bottle import (
 )
 import json
 import os
+import jsonschema
 
 import models
+import schemas
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
@@ -26,10 +28,18 @@ def tasks(db):
 
 @post('/api/tasks')
 def create_task(db):
-    task = models.Task(title=request.json['title'])
-    db.add(task)
-    db.commit()  # viewが終わるまでcommitされないからidとかを返せない
-    return json.dumps(task.serialize)
+    response.content_type = 'application/json'
+    try:
+        jsonschema.validate(request.json, schemas.task_schema)
+        task = models.Task(title=request.json['title'])
+        db.add(task)
+        db.commit()  # ここでコミットしないとidとかdefault値を返せない
+        return json.dumps(task.serialize)
+    except jsonschema.ValidationError:
+        response.status_code = 400
+        return json.dumps({
+            'error': {'message': 'Validation is failed...'}
+        })
 
 
 @route('/static/<filename:path>')
