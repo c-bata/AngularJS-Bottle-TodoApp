@@ -21,7 +21,7 @@ app.controller('TodoController', function($http){
         $http.post('/api/tasks', {'title': self.newTodo}).
             success(function(data, status, headers, config){
                 console.log(data);
-                self.getTodo();
+                self.todos.push(data);
             }).
             error(function(data, status, headers, config){
                 console.log(data);
