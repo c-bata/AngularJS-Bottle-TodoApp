@@ -5,7 +5,7 @@
 BottleとAngularJSの勉強用に作ったシンプルなToDoアプリ。
 使い方がわかったもの。
 
-* AngularJS
+* AngularJS / Babel
 * Bottle
 * SQLAlchemy
 * Bottle-SQLAlchemy
@@ -45,4 +45,6 @@ app.config(function ($interpolateProvider) {
 
 - Pythonエンジニア養成読本 BottleとSQLAlchemy
 - jsonschemaは適当にググった
-- AngularJSは
+- http://www.michaelbromley.co.uk/blog/350/exploring-es6-classes-in-angularjs-1-x%20nice
+- http://angular-tips.com/blog/2015/06/using-angular-1-dot-x-with-es6-and-webpack/
+- http://blog.thoughtram.io/angularjs/es6/2015/01/23/exploring-angular-1.3-using-es6.html
