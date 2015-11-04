@@ -7,7 +7,7 @@
 <body>
 <h1>ToDoリスト</h1>
 <div ng-controller="TodoController as vm">
-    <form ng-submit="vm.create()">
+    <form ng-submit="vm.createTodo()">
         <input type="text" ng-model="vm.newTodo" placeholder="ToDo名を入力">
         <input type="button" value="新規作成">
     </form>
