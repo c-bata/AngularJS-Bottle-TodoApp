@@ -1,6 +1,6 @@
-var gulp       = require('gulp');
-var browserify = require('browserify');
-var source     = require('vinyl-source-stream');
+import gulp       from 'gulp';
+import browserify from 'browserify';
+import source     from 'vinyl-source-stream';
 
 var paths = {
     test: "./test/*.js",
@@ -9,7 +9,7 @@ var paths = {
 };
 
 
-gulp.task('browserify', function() {
+gulp.task('browserify', () => {
     browserify({entries: ["./js/app.js"]})
         .bundle()
         .on('error', function(err) {
@@ -20,7 +20,7 @@ gulp.task('browserify', function() {
         .pipe(gulp.dest(paths.dist_src));
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', () => {
     gulp.watch('./js/**/*', ['browserify'])
 });
 
